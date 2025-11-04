@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="sqG0lm" name="EchoSplice" projectType="audioplug" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginManufacturer="Nomii Audio"
+              pluginCode="ecpl">
+  <MAINGROUP id="amAVnS" name="EchoSplice">
+    <FILE id="aDKAO2" name="Frame.png" compile="0" resource="1" file="photos/Frame.png"/>
+    <FILE id="ZuTowO" name="FriedbergClose.jpeg" compile="0" resource="1"
+          file="photos/FriedbergClose.jpeg"/>
+    <FILE id="RlC3eW" name="FriedbergAudience.jpeg" compile="0" resource="1"
+          file="photos/FriedbergAudience.jpeg"/>
+    <FILE id="ED1oLr" name="PeabodyStair.jpeg" compile="0" resource="1"
+          file="photos/PeabodyStair.jpeg"/>
+    <FILE id="DMs6mk" name="Bathroom.jpeg" compile="0" resource="1" file="photos/Bathroom.jpeg"/>
+    <FILE id="raKezW" name="FriedbergStair.jpeg" compile="0" resource="1"
+          file="photos/FriedbergStair.jpeg"/>
+    <FILE id="Vo45Ke" name="HallWay.jpeg" compile="0" resource="1" file="photos/HallWay.jpeg"/>
+    <FILE id="aTiSuw" name="MediumStairWay.jpeg" compile="0" resource="1"
+          file="photos/MediumStairWay.jpeg"/>
+    <FILE id="zgXc8L" name="smallKnob.png" compile="0" resource="1" file="../../../../Downloads/smallKnob.png"/>
+    <FILE id="Yo55IC" name="middleKnob.png" compile="0" resource="1" file="../../../../Downloads/middleKnob.png"/>
+    <FILE id="HN1Y8R" name="sliderhead.png" compile="0" resource="1" file="../../../../Downloads/sliderhead.png"/>
+    <FILE id="YyqI9W" name="largeKnob.png" compile="0" resource="1" file="../../../../Downloads/largeKnob.png"/>
+    <GROUP id="{3BE5CF95-C85D-C911-B4D4-148AEBAC7391}" name="Source">
+      <FILE id="wpzvlg" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="uD9I3w" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="ilCgi5" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="eVFqt7" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+    <FILE id="oaQXGz" name="BathRoom1.wav" compile="0" resource="1" file="../../../../Desktop/processed ir/BathRoom1.wav"/>
+    <FILE id="p3DNdG" name="BathRoom2.wav" compile="0" resource="1" file="../../../../Desktop/processed ir/BathRoom2.wav"/>
+    <FILE id="j1bVKa" name="BathRoom3.wav" compile="0" resource="1" file="../../../../Desktop/processed ir/BathRoom3.wav"/>
+    <FILE id="OrvOPc" name="BathRoom4.wav" compile="0" resource="1" file="../../../../Desktop/processed ir/BathRoom4.wav"/>
+    <FILE id="faDlLU" name="FriedbergStair1.wav" compile="0" resource="1"
+          file="../../../../Desktop/processed ir/FriedbergStair1.wav"/>
+    <FILE id="Gei43Y" name="FriedbergStair2.wav" compile="0" resource="1"
+          file="../../../../Desktop/processed ir/FriedbergStair2.wav"/>
+    <FILE id="DOPayS" name="Friedberg_1_Close.WAV" compile="0" resource="1"
+          file="../../../../Desktop/Impulse Responses/IR freidberg/Friedberg_1_Close.WAV"/>
+    <FILE id="p7XRFP" name="Friedberg_2_close.WAV" compile="0" resource="1"
+          file="../../../../Desktop/Impulse Responses/IR freidberg/Friedberg_2_close.WAV"/>
+    <FILE id="Tbp3IT" name="mid-audiencce-long.wav" compile="0" resource="1"
+          file="../../../../Desktop/IR new/mid-audiencce-long.wav"/>
+    <FILE id="qhBJdS" name="Friedberg_3_close.WAV" compile="0" resource="1"
+          file="../../../../Desktop/Impulse Responses/IR freidberg/Friedberg_3_close.WAV"/>
+    <FILE id="wWOqXD" name="Mid-Audience1.WAV" compile="0" resource="1"
+          file="../../../../Desktop/Impulse Responses/IR freidberg/Mid-Audience1.WAV"/>
+    <FILE id="XyQSjo" name="mid-audience2.WAV" compile="0" resource="1"
+          file="../../../../Desktop/Impulse Responses/IR freidberg/mid-audience2.WAV"/>
+    <FILE id="VSTUH5" name="FriedbergStair3.wav" compile="0" resource="1"
+          file="../../../../Desktop/processed ir/FriedbergStair3.wav"/>
+    <FILE id="zzwWtI" name="FriedbergStair4.wav" compile="0" resource="1"
+          file="../../../../Desktop/processed ir/FriedbergStair4.wav"/>
+    <FILE id="Szwb4j" name="HallWay1.wav" compile="0" resource="1" file="../../../../Desktop/processed ir/HallWay1.wav"/>
+    <FILE id="jjsyDI" name="HallWay2.wav" compile="0" resource="1" file="../../../../Desktop/processed ir/HallWay2.wav"/>
+    <FILE id="fDWaOT" name="MediumStairWay1.wav" compile="0" resource="1"
+          file="../../../../Desktop/processed ir/MediumStairWay1.wav"/>
+    <FILE id="gwtOAI" name="MediumStairWay2.wav" compile="0" resource="1"
+          file="../../../../Desktop/processed ir/MediumStairWay2.wav"/>
+    <FILE id="Af9xMW" name="MediumStairWay3.wav" compile="0" resource="1"
+          file="../../../../Desktop/processed ir/MediumStairWay3.wav"/>
+    <FILE id="MJm1sy" name="MediumStairWay4.wav" compile="0" resource="1"
+          file="../../../../Desktop/processed ir/MediumStairWay4.wav"/>
+    <FILE id="DQlnRQ" name="MediumStairWay5.wav" compile="0" resource="1"
+          file="../../../../Desktop/processed ir/MediumStairWay5.wav"/>
+    <FILE id="kS6oN6" name="PeabodyStair1.wav" compile="0" resource="1"
+          file="../../../../Desktop/processed ir/PeabodyStair1.wav"/>
+    <FILE id="CLa4e6" name="PeabodyStair2.wav" compile="0" resource="1"
+          file="../../../../Desktop/processed ir/PeabodyStair2.wav"/>
+    <FILE id="BKzjGP" name="PeabodyStair3.wav" compile="0" resource="1"
+          file="../../../../Desktop/processed ir/PeabodyStair3.wav"/>
+    <FILE id="HCw2o8" name="PeabodyStair4.wav" compile="0" resource="1"
+          file="../../../../Desktop/processed ir/PeabodyStair4.wav"/>
+  </MAINGROUP>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="EchoSplice"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="EchoSplice"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../../modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../modules"/>
+        <MODULEPATH id="juce_core" path="../../../modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../modules"/>
+        <MODULEPATH id="juce_dsp" path="../../../modules"/>
+        <MODULEPATH id="juce_events" path="../../../modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+</JUCERPROJECT>
