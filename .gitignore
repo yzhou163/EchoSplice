@@ -36,3 +36,6 @@ Pods/
 # macOS system files
 .DS_Store
 
+build/
+*.tmp
+*.cache
