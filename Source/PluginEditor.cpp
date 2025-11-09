@@ -94,7 +94,7 @@ VERBINPEABODYAudioProcessorEditor::VERBINPEABODYAudioProcessorEditor (VERBINPEAB
         audioProcessor.apvts, "outputGain", outputGainSlider);
 
     // PreDelay slider
-    preDelaySlider.setSliderStyle(juce::Slider::Rotary);
+    preDelaySlider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     preDelaySlider.setTextBoxStyle(juce::Slider::NoTextBox, false, 60, 20);
     addAndMakeVisible(preDelaySlider);
     preDelayAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(
@@ -186,7 +186,7 @@ VERBINPEABODYAudioProcessorEditor::VERBINPEABODYAudioProcessorEditor (VERBINPEAB
 
     //grain
     // Granular Mix slider
-    granularMixSlider.setSliderStyle(juce::Slider::Rotary);
+    granularMixSlider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     granularMixSlider.setTextBoxStyle(juce::Slider::NoTextBox, false, 50, 20);
     addAndMakeVisible(granularMixSlider);
     granularMixAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(
@@ -198,7 +198,7 @@ VERBINPEABODYAudioProcessorEditor::VERBINPEABODYAudioProcessorEditor (VERBINPEAB
     
     
     // Grain Size slider
-    grainSizeSlider.setSliderStyle(juce::Slider::Rotary);
+    grainSizeSlider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     grainSizeSlider.setTextBoxStyle(juce::Slider::NoTextBox, false, 50, 20);
     addAndMakeVisible(grainSizeSlider);
     grainSizeAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(
@@ -210,7 +210,7 @@ VERBINPEABODYAudioProcessorEditor::VERBINPEABODYAudioProcessorEditor (VERBINPEAB
     
     
     // GranularFeedback slider
-    granularFeedbackSlider.setSliderStyle(juce::Slider::Rotary);
+    granularFeedbackSlider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
     granularFeedbackSlider.setTextBoxStyle(juce::Slider::NoTextBox, false, 50, 20);
     addAndMakeVisible(granularFeedbackSlider);
     granularFeedbackAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(
@@ -426,36 +426,47 @@ void VERBINPEABODYAudioProcessorEditor::bypassButtonClicked()
 
 void VERBINPEABODYAudioProcessorEditor::timerCallback()
 {
-    // IR lengths
+    // --- IR lengths ---
     float s1 = audioProcessor.getIROriginalLengthSeconds1();
     float s2 = audioProcessor.getIROriginalLengthSeconds2();
     int samples1 = audioProcessor.getIROriginalSamples1();
     int samples2 = audioProcessor.getIROriginalSamples2();
 
-    juce::String text1 = juce::String::formatted("IR1: %.3f s", s1, samples1);
-    juce::String text2 = juce::String::formatted("IR2: %.3f s", s2, samples2);
+    juce::String text1 = juce::String::formatted("IR1: %.3f s (%d samples)", s1, samples1);
+    juce::String text2 = juce::String::formatted("IR2: %.3f s (%d samples)", s2, samples2);
 
     if (ir1LengthLabel.getText() != text1)
         ir1LengthLabel.setText(text1, juce::dontSendNotification);
     if (ir2LengthLabel.getText() != text2)
         ir2LengthLabel.setText(text2, juce::dontSendNotification);
 
-    // BPM display
+    // --- BPM display ---
     double bpm = 0.0;
-    if (auto* playHead = audioProcessor.getPlayHead()) {
-        juce::AudioPlayHead::CurrentPositionInfo posInfo;
-        if (playHead->getCurrentPosition(posInfo))
-            bpm = posInfo.bpm;
+
+    if (audioProcessor.isPrepared())
+    {
+        if (auto* playHead = audioProcessor.getPlayHead())
+        {
+            if (auto position = playHead->getPosition())
+            {
+                auto bpmOpt = position->getBpm();
+                if (bpmOpt)
+                    bpm = *bpmOpt; // dereference optional
+            }
+        }
     }
+
     bpmLabel.setText("BPM: " + juce::String(bpm, 3), juce::dontSendNotification);
 
+    // --- Predelay slider sync ---
     bool syncEnabled = audioProcessor.apvts.getRawParameterValue("syncToBPM")->load() > 0.5f;
-    if (syncEnabled) {
+    if (syncEnabled)
+    {
         float bpmPredelay = audioProcessor.getTargetPredelayMs();
-
         preDelaySlider.setValue(bpmPredelay, juce::dontSendNotification);
     }
 }
+
 
 void VERBINPEABODYAudioProcessorEditor::changeListenerCallback(juce::ChangeBroadcaster* source)
 {

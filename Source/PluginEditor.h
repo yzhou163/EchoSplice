@@ -65,9 +65,8 @@ private:
             if (!sliderImage.isValid())
                 return;
 
-            float widthScale  = 0.5f; // scale width if you want
-            float heightScale = 0.2f; // half the height
-
+            float widthScale  = 0.5f;
+            float heightScale = 0.2f;
             int imgWidth  = static_cast<int>(sliderImage.getWidth() * widthScale);
             int imgHeight = static_cast<int>(sliderImage.getHeight() * heightScale);
 
@@ -149,7 +148,7 @@ private:
     };
 
 
-    // --- Sliders & Attachments ---
+// Sliders Attachments
     juce::Slider inputGainSlider;
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> inputGainAttachment;
 
@@ -183,14 +182,14 @@ private:
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> tailStart2Attachment;
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> tailEnd2Attachment;
 
-    // --- Labels ---
+//Labels
     juce::Label inputLabel, outputLabel, preDelayLabel;
     juce::Label bpmLabel, ir1LengthLabel, ir2LengthLabel, syncLabel;
     juce::Label brightness, granularMix, grainSize, granularFeedback;
     juce::Label reverbDryWetLabel, convMixLabel;
     juce::Label tailStart1Label, tailEnd1Label, tailStart2Label, tailEnd2Label;
 
-    // --- Buttons & Attachments ---
+// Buttons  Attachments
     juce::ToggleButton syncToBPMButton;
     std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> syncToBPMAttachment;
 

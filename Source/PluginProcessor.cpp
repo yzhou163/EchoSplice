@@ -19,24 +19,24 @@ VERBINPEABODYAudioProcessor::VERBINPEABODYAudioProcessor()
       juce::Thread("IR Loader Thread"),
       apvts (*this, nullptr, "PARAMETERS",
                                {
-                                   std::make_unique<Parameter>("inputGain", "Input Gain",
+                                   std::make_unique<juce::AudioParameterFloat>("inputGain", "Input Gain",
                                        juce::NormalisableRange<float>(-30.0f, 24.0f, 0.01f), 0.0f),
-                                   std::make_unique<Parameter>("outputGain", "Output Gain",
+                                   std::make_unique<juce::AudioParameterFloat>("outputGain", "Output Gain",
                                        juce::NormalisableRange<float>(-60.0f, 24.0f, 0.01f), 0.0f),
                                  
-                                   std::make_unique<Parameter>("preDelay", "Pre-Delay",
+                                   std::make_unique<juce::AudioParameterFloat>("preDelay", "Pre-Delay",
                                        juce::NormalisableRange<float>(30.0f, 100.0f, 0.1f), 0.0f),
         
-                                   std::make_unique<Parameter>("syncToBPM", "Sync to BPM",
+                                   std::make_unique<juce::AudioParameterFloat>("syncToBPM", "Sync to BPM",
                                        juce::NormalisableRange<float>(0.0f, 1.0f, 1.0f), 0.0f),
     
-                                   std::make_unique<Parameter>("brightness", "Brightness",
+                                   std::make_unique<juce::AudioParameterFloat>("brightness", "Brightness",
                                        juce::NormalisableRange<float>(-2.0f, 2.0f, 0.01f), 0.0f),
         
-                                   std::make_unique<Parameter>("granularMix", "Granular Mix",
+                                   std::make_unique<juce::AudioParameterFloat>("granularMix", "Granular Mix",
                                        juce::NormalisableRange<float>(0.0f, 1.0f, 0.01f), 0.0f),
       
-                                   std::make_unique<Parameter>("grainSize", "Grain Size",
+                                   std::make_unique<juce::AudioParameterFloat>("grainSize", "Grain Size",
                                        juce::NormalisableRange<float>(100.0f, 2000.0f, 1.0f), 50.0f),
 
                                    std::make_unique<juce::AudioParameterFloat>("convMix", "Convolution Mix",
@@ -45,7 +45,7 @@ VERBINPEABODYAudioProcessor::VERBINPEABODYAudioProcessor()
                                    std::make_unique<juce::AudioParameterFloat>("reverbDryWet", "Reverb Dry/Wet",
                                        juce::NormalisableRange<float>(0.0f, 1.0f, 0.01f), 0.8f),
                                   
-                                   std::make_unique<Parameter>("bypass", "Bypass",
+                                   std::make_unique<juce::AudioParameterFloat>("bypass", "Bypass",
                                        juce::NormalisableRange<float>(0.0f, 1.0f), 0.0f),
           
           std::make_unique<juce::AudioParameterFloat>("tailStart1", "Tail Start 1",
@@ -88,7 +88,7 @@ VERBINPEABODYAudioProcessor::VERBINPEABODYAudioProcessor()
                       "Friedberg Stair 1", "Friedberg Stair 2", "Friedberg Stair 3", "Friedberg Stair 4",
                       "Friedberg Hall Close1", "Friedberg Hall Close2", "Friedberg Hall Close3",
                       "Friedberg Hall Audience1", "Friedberg Hall Audience2", "Friedberg Hall Audience3"
-                      "Friedberg Stair 4"
+                      
                   },
                   23
               ),
@@ -215,6 +215,7 @@ void VERBINPEABODYAudioProcessor::prepareToPlay (double sampleRate, int samplesP
     
     granularFeedbackSmoothed.reset(sampleRate, 0.005);
     granularFeedbackSmoothed.setCurrentAndTargetValue(*apvts.getRawParameterValue("granularFeedback"));
+    prepared = true;
 }
 
 void VERBINPEABODYAudioProcessor::releaseResources()
@@ -808,11 +809,18 @@ float VERBINPEABODYAudioProcessor::getTargetDecaySeconds(int convIndex)
 
     double bpm = 120.0;
     if (auto* playHead = getPlayHead())
-    {
-        juce::AudioPlayHead::CurrentPositionInfo posInfo;
-        if (playHead->getCurrentPosition(posInfo) && posInfo.bpm > 0.0)
-            bpm = posInfo.bpm;
-    }
+        if (auto* playHead = getPlayHead())
+          {
+              if (auto position = playHead->getPosition())
+              {
+                  if (auto bpmOpt = position->getBpm())
+                  {
+                      double newBpm = *bpmOpt;
+                      if (newBpm > 0.0)
+                          bpm = newBpm;
+                  }
+              }
+          }
 
     float decaySeconds = 1.0f;
     if (syncToBPM)
@@ -850,13 +858,19 @@ float VERBINPEABODYAudioProcessor::getTargetPredelayMs()
     {
         double bpm = 120.0;
         if (auto* playHead = getPlayHead())
-        {
-            juce::AudioPlayHead::CurrentPositionInfo posInfo;
-            if (playHead->getCurrentPosition(posInfo) && posInfo.bpm > 0.0)
-                bpm = posInfo.bpm;
-        }
+          {
+              if (auto position = playHead->getPosition())
+              {
+                  if (auto bpmOpt = position->getBpm())
+                  {
+                      double newBpm = *bpmOpt;
+                      if (newBpm > 0.0)
+                          bpm = newBpm;
+                  }
+              }
+          }
         predelayMs = static_cast<float>((60.0 / bpm) * 1000.0 / 12.0); // quarter note divided by 4 = 16th
-        predelayMs = juce::jlimit(30.0f, 100.0f, predelayMs);          // clamp to 0–500 ms
+        predelayMs = juce::jlimit(30.0f, 100.0f, predelayMs);
         *apvts.getRawParameterValue("preDelay") = predelayMs;
     }
     return predelayMs;

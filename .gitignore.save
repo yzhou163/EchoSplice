@@ -1,10 +1,3 @@
-.DS_Store
-build/
-DerivedData/
-*.xcuserdatad
-*.xcuserdata
-*.xcworkspace
-Pods/
 # JUCE build and generated code
 JuceLibraryCode/
 Builds/
@@ -16,7 +9,6 @@ cmake-build-*/
 DerivedData/
 *.xcuserdatad/
 *.xcuserstate
-Pods/
 
 # Plugin binaries
 *.vst3
@@ -35,4 +27,31 @@ Pods/
 
 # macOS system files
 .DS_Store
+# JUCE build and generated code
+JuceLibraryCode/
+Builds/
+cmake-build-*/
 
+# Xcode
+*.xcworkspace/
+*.xcodeproj/
+DerivedData/
+*.xcuserdatad/
+*.xcuserstate
+
+# Plugin binaries
+*.vst3
+*.component
+*.aaxplugin
+*.app
+
+# Backup & temp files
+*.o
+*.obj
+*.pdb
+*.exe
+*.bak
+*.tmp
+*.swp
+
+# macOS system 

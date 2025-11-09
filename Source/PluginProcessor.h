@@ -23,7 +23,7 @@ public:
     //==============================================================================
     VERBINPEABODYAudioProcessor();
     ~VERBINPEABODYAudioProcessor() override;
-
+    bool isPrepared() const noexcept { return prepared; }
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
@@ -130,15 +130,14 @@ public:
     int grainTimeCounter = 0;
     
 private:
-    
+    bool prepared = false;  
     bool bypassState = false;
     int currentIRIndex1 = 0;
     int currentIRIndex2 = 0;
-    // background thread flag
+
     std::atomic<bool> shouldReloadIR { false };
     void run() override;
   
-    // store raw IRs
     juce::AudioBuffer<float> originalIR1;
     juce::AudioBuffer<float> originalIR2;
     juce::CriticalSection updateLock;
