@@ -7,12 +7,11 @@ Requirements
 - Xcode (macOS) or Visual Studio (Windows)
 - Git LFS for large audio files
 
-How to Build
-Clone the repository
+How to Build: Clone the repository
 > ⚠️ **Do NOT use “Download ZIP”**, because this project uses Git LFS.
 
-brew install git git-lfs
-git lfs install
-git clone https://github.com/yzhou163/EchoSplice.git
-cd EchoSplice
-git lfs pull
+>brew install git git-lfs
+>git lfs install
+>git clone https://github.com/yzhou163/EchoSplice.git
+>cd EchoSplice
+>git lfs pull
