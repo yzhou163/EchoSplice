@@ -18,4 +18,5 @@ git clone https://github.com/yzhou163/EchoSplice.git
 
 cd EchoSplice
 
+Then launch the code and build the plugin for VST3/AU
 
